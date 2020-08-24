@@ -1,4 +1,5 @@
-FROM biocontainers/biocontainers:v1.1.0_cv2
+FROM biocontainers/biocontainers:v1.2.0_cv1
 
-RUN conda install bwa bwakit samtools>=1.10
-RUN pip install git+https://github.com/biowdl/mkbigfifo.git
+RUN conda create -n bwakit bwa bwakit samtools>=1.10 python=3
+ENV PATH /opt/conda/envs/bwakit/bin:$PATH
+RUN python3 -m pip install git+https://github.com/biowdl/mkbigfifo.git
